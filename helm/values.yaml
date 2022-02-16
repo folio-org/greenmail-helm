@@ -1,0 +1,43 @@
+greenmail:
+  replicaCount: 1
+  image:
+    repository: greenmail/standalone
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "NO_TAG"
+
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: ""
+  podAnnotations: {}
+  podSecurityContext: {}
+  securityContext: {}
+  service:
+    type: ClusterIP
+    port:
+      smtp: 25
+      smtps: 465
+      imap: 143
+      imaps: 993
+      pop3: 110
+      pop3s: 995
+      http: 8080
+  resources:
+    limits:
+      cpu: "700m"
+      memory: "512Mi"
+    requests:
+      cpu: "500m"
+      memory: "400Mi"
+
+  javaOptions: -Djava.net.preferIPv4Stack=true -XX:MaxRAMPercentage=85.0
+  greenmailOptions: -Dgreenmail.setup.test.all -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.auth.disabled
+
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 80
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}

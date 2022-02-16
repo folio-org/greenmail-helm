@@ -1,0 +1,7 @@
+apiVersion: v2
+appVersion: 1.6.5
+description: Green mail
+home: https://greenmail-mail-test.github.io/greenmail/
+name: greenmail
+version: ${chartVersion}
+
