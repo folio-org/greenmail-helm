@@ -2,4 +2,4 @@
 
 @Library('folio_jenkins_shared_libs@RANCHER-172') _
 
-pipelineHemlChartBuild()
+pipelineHelmChartBuild()
