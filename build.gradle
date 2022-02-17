@@ -33,27 +33,27 @@ helm {
         }
     }
 
-    repositories {
-        folioRepositoryUrl {
-            url = uri project.helmRegistryUrl
-            credentials {
-                username = project.helmRegistryUsername
-                password = project.helmRegistryPassword
-            }
-        }
-    }
-
-    publishing {
-        repositories {
-            artifactory {
-                url = uri project.helmRegistryUrl
-                credentials {
-                    username = project.helmRegistryUsername
-                    password = project.helmRegistryPassword
-                }
-            }
-        }
-    }
+//    repositories {
+//        folioRepositoryUrl {
+//            url = uri project.helmRegistryUrl
+//            credentials {
+//                username = project.helmRegistryUsername
+//                password = project.helmRegistryPassword
+//            }
+//        }
+//    }
+//
+//    publishing {
+//        repositories {
+//            artifactory {
+//                url = uri project.helmRegistryUrl
+//                credentials {
+//                    username = project.helmRegistryUsername
+//                    password = project.helmRegistryPassword
+//                }
+//            }
+//        }
+//    }
 }
 
 build.dependsOn tasks.helmPackage
