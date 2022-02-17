@@ -4,7 +4,7 @@ greenmail:
     repository: greenmail/standalone
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "NO_TAG"
+    tag: "1.6.5"
 
   imagePullSecrets: []
   nameOverride: ""
