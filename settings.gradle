@@ -1,17 +1,1 @@
-//To use locally, simply add credentials and url to the root gradle.properties
-// DO NOT COMMIT CREDENTIALS
-pluginManagement {
-  repositories {
-    mavenLocal()
-    maven {
-      url = repositoryUrl
-      credentials {
-        username = repositoryUsername
-        password = repositoryPassword
-      }
-    }
-    gradlePluginPortal()
-  }
-}
-
 rootProject.name = 'greenmail'

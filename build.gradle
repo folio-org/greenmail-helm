@@ -4,19 +4,6 @@ plugins {
     id 'org.unbroken-dome.helm-publish' version '1.7.0'
 }
 
-repositories {
-    repositories {
-        mavenLocal()
-        maven {
-            url project.repositoryUrl
-            credentials {
-                username = project.repositoryUsername
-                password = project.repositoryPassword
-            }
-        }
-    }
-}
-
 task publish {}
 
 //repositories {
