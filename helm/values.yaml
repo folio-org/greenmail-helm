@@ -3,7 +3,6 @@ greenmail:
   image:
     repository: greenmail/standalone
     pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
     tag: "1.6.5"
 
   imagePullSecrets: []
@@ -31,7 +30,7 @@ greenmail:
       memory: "400Mi"
 
   javaOptions: -Djava.net.preferIPv4Stack=true -XX:MaxRAMPercentage=85.0
-  greenmailOptions: -Dgreenmail.setup.test.all -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.auth.disabled
+  greenmailOptions: -Dgreenmail.setup.all -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.auth.disabled
 
   autoscaling:
     enabled: false
