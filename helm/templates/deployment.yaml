@@ -40,22 +40,22 @@ spec:
               value: {{ .Values.greenmail.greenmailOptions | quote }}
           ports:
             - name: smtp
-              containerPort: 25
+              containerPort: 3025
               protocol: TCP
             - name: smtps
-              containerPort: 465
+              containerPort: 3465
               protocol: TCP
             - name: imap
-              containerPort: 143
+              containerPort: 3143
               protocol: TCP
             - name: imaps
-              containerPort: 993
+              containerPort: 3993
               protocol: TCP
             - name: pop3
-              containerPort: 110
+              containerPort: 3110
               protocol: TCP
             - name: pop3s
-              containerPort: 995
+              containerPort: 3995
               protocol: TCP
             - name: http
               containerPort: 8080
