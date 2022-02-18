@@ -6,15 +6,6 @@ plugins {
 
 task publish {}
 
-//repositories {
-//    repositories {
-//        ivy {
-//            name "_helmClientReleases"
-//            url "helm.com"
-//        }
-//    }
-//}
-
 helm {
     charts {
         'greenmail' {
