@@ -30,7 +30,7 @@ greenmail:
       memory: "400Mi"
 
   javaOptions: -Djava.net.preferIPv4Stack=true -XX:MaxRAMPercentage=85.0
-  greenmailOptions: -Dgreenmail.setup.test.all -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.auth.disabled
+  greenmailOptions: -Dgreenmail.setup.all -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.auth.disabled
 
   autoscaling:
     enabled: false
