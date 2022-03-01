@@ -12,15 +12,30 @@ greenmail:
   podSecurityContext: {}
   securityContext: {}
   service:
-    type: ClusterIP
+    type: LoadBalancer
     port:
-      smtp: 25
-      smtps: 465
-      imap: 143
-      imaps: 993
-      pop3: 110
-      pop3s: 995
+      smtp: 40025
+      smtps: 40465
+      imap: 40143
+      imaps: 40993
+      pop3: 40110
+      pop3s: 40995
       http: 8080
+  
+  ingress:
+    enabled: true
+    annotations: 
+      kubernetes.io/ingress.class: "elb"                                             
+      external-dns.alpha.kubernetes.io/hostname: greenmail.cypress.ci.folio.org
+    hosts:
+      - host: cypress.ci.folio.org
+        paths: []
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+  
+
   resources:
     limits:
       cpu: "700m"
@@ -30,7 +45,7 @@ greenmail:
       memory: "400Mi"
 
   javaOptions: -Djava.net.preferIPv4Stack=true -XX:MaxRAMPercentage=85.0
-  greenmailOptions: -Dgreenmail.setup.test.all -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.auth.disabled
+  greenmailOptions: -Dgreenmail.setup.test.all -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.auth.disabled -Dgreenmail.verbose -Dgreenmail.startup.timeout=3000
 
   autoscaling:
     enabled: false
