@@ -6,13 +6,20 @@ plugins {
 
 task publish {}
 
+def helmRegistryUrlDefined = false
+if (project.hasProperty("helmRegistryUrl")) {
+    helmRegistryUrlDefined = true
+}
+
 helm {
     charts {
         'greenmail' {
             sourceDir = file('helm')
             chartVersion = project.hasProperty("projectVersion") ? project.projectVersion : project.version
             filtering {
-                values.put 'repository', project.helmRegistryUrl
+                if (helmRegistryUrlDefined) {
+                    values.put 'repository', project.helmRegistryUrl
+                }
 
                 project.properties.findAll
                 { key, value ->
@@ -24,23 +31,25 @@ helm {
         }
     }
 
-    repositories {
-        folioRepositoryUrl {
-            url = uri project.helmRegistryUrl
-            credentials {
-                username = project.helmRegistryUsername
-                password = project.helmRegistryPassword
-            }
-        }
-    }
-
-    publishing {
+    if (helmRegistryUrlDefined) {
         repositories {
-            artifactory {
+            folioRepositoryUrl {
                 url = uri project.helmRegistryUrl
                 credentials {
                     username = project.helmRegistryUsername
                     password = project.helmRegistryPassword
+                }
+            }
+        }
+
+        publishing {
+            repositories {
+                artifactory {
+                    url = uri project.helmRegistryUrl
+                    credentials {
+                        username = project.helmRegistryUsername
+                        password = project.helmRegistryPassword
+                    }
                 }
             }
         }
@@ -51,6 +60,7 @@ build.dependsOn tasks.helmPackage
 publish.dependsOn tasks.helmPublish
 
 import org.apache.tools.ant.filters.ReplaceTokens
+
 if (!(project.ext.properties.containsKey("disableHelmSourcesProcessing") && project.ext.disableHelmSourcesProcessing)) {
     project.afterEvaluate {
         helm.charts.each { chart ->
