@@ -12,7 +12,8 @@ greenmail:
   podSecurityContext: {}
   securityContext: {}
   service:
-    type: LoadBalancer
+    #type: LoadBalancer
+    type: NodePort
     port:
       smtp: 40025
       smtps: 40465
@@ -23,7 +24,7 @@ greenmail:
       http: 8080
   
   ingress:
-    enabled: true
+    enabled: false
     className: elb
     annotations: 
       kubernetes.io/ingress.class: nginx
